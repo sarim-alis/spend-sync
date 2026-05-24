@@ -14,4 +14,3 @@ export default StyleSheet.create({
   switchText: { marginTop: 20, fontSize: 14, color: "#333", fontWeight: "600"},
   errorText: { color: "red", fontSize: 12, marginBottom: 10, alignSelf: "center"},
 });
-

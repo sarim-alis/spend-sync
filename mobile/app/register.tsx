@@ -4,48 +4,67 @@ import { Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, P
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import styles from "../styles/index/index.js";
+import styles from "../styles/register/register.js";
 
 
 // Frontend.
-export default function Index() {
+export default function Register() {
   // States.
   const router = useRouter();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle login.
-  const handleLogin = async () => {
+  // Handle register.
+  const handleRegister = async () => {
     try {
       setLoading(true);
       setError("");
 
-      const res = await fetch("http://192.168.1.23:5000/api/users/login", {
+      if (!name || !email || !password) {
+        throw new Error("Please fill all fields");
+      }
+
+      const res = await fetch("http://192.168.1.23:3000/api/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Login failed");
+        throw new Error(data.message || "Registration failed");
       }
 
-      // Save user data in AsyncStorage.
-      await AsyncStorage.multiSet([
-        ["token", data.token],
-        ["userId", String(data.userId)],
-        ["name", data.name],
-      ]);
+      // Auto login after successful registration.
+      const loginRes = await fetch("http://192.168.1.23:3000/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // Redirect to home tabs.
-      router.replace("/(tabs)/home");
+      const loginData = await loginRes.json();
+
+      if (loginRes.ok) {
+        // Save user data in AsyncStorage.
+        await AsyncStorage.multiSet([
+          ["token", loginData.token],
+          ["userId", String(loginData.userId)],
+          ["name", loginData.name],
+        ]);
+
+        // Redirect to home tabs.
+        router.replace("/(tabs)/home");
+      } else {
+        // If auto-login fails, redirect to login page.
+        router.replace("/");
+      }
     } catch (err: any) {
-      console.error("Login Error:", err.message);
+      console.error("Register Error:", err.message);
       setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
@@ -62,6 +81,10 @@ export default function Index() {
         <Image style={styles.logo} source={require("../assets/images/logo.png")} resizeMode="contain" />
         <Text style={styles.slogan}>Spend Sync</Text>
 
+        {/* Name. */}
+        <Text style={styles.label}>Name</Text>
+        <TextInput style={styles.dive} value={name} onChangeText={setName} autoCapitalize="words" />
+
         {/* Email. */}
         <Text style={styles.label}>Email</Text>
         <TextInput style={styles.dive} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
@@ -75,22 +98,22 @@ export default function Index() {
           <Ionicons name={showPassword ? "eye-outline" : "eye-off-outline"} size={20} />
         </TouchableOpacity>
       </View>
-      
-        {/* Error */}
+
+        {/* Error Message */}
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
         {/* Button. */}
-        <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
+        <TouchableOpacity style={styles.button} onPress={handleRegister} disabled={loading}>
           {loading ? (
             <ActivityIndicator color="#fff" />
           ) : (
-            <Text style={styles.buttonText}>LOGIN</Text>
+            <Text style={styles.buttonText}>REGISTER</Text>
           )}
         </TouchableOpacity>
 
-        {/* Register */}
-        <TouchableOpacity onPress={() => router.push("/register")}>
-          <Text style={styles.switchText}>Don't have an account? Register</Text>
+        {/* Switch to Login */}
+        <TouchableOpacity onPress={() => router.replace("/")}>
+          <Text style={styles.switchText}>Already have an account? Login</Text>
         </TouchableOpacity>
 
       </View>
