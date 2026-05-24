@@ -1,18 +1,40 @@
-import Fastify from 'fastify'
+import Fastify from "fastify";
+import cors from "@fastify/cors";
+import { PrismaClient } from "@prisma/client";
+import {
+  userRoutes,
+  incomeRoutes,
+  savingRoutes,
+  expenseRoutes,
+  summaryRoutes,
+  reportRoutes,
+} from "./src/routes/index.js";
 
-const fastify = Fastify({ logger: true})
+const fastify = Fastify({ logger: true });
+const prisma = new PrismaClient();
+const PORT = process.env.PORT || 3000;
 
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
-})
+await fastify.register(cors);
+
+fastify.register(userRoutes, { prefix: "/api/users" });
+fastify.register(incomeRoutes, { prefix: "/api/incomes" });
+fastify.register(savingRoutes, { prefix: "/api/savings" });
+fastify.register(expenseRoutes, { prefix: "/api/expenses" });
+fastify.register(summaryRoutes, { prefix: "/api/summary" });
+fastify.register(reportRoutes, { prefix: "/api/reports" });
 
 const start = async () => {
   try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0'})
-    console.log('Server running on port 3000 🍭⭐🍊🔰')
+    await prisma.$connect();
+    console.log("PostgreSQL connected 🐼");
+
+    await fastify.listen({ port: PORT, host: "0.0.0.0" });
+    console.log(`🚀 Server running at http://localhost:${PORT} 🍂�⭐`);
   } catch (err) {
-    fastify.log.error(err)
-    process.exit(1)
+    console.error("❌ Server startup failed:", err.message);
+    fastify.log.error(err);
+    process.exit(1);
   }
-}
-start()
+};
+
+start();
