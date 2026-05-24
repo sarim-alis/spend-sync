@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity, Dimensions, ScrollView, ActivityIndicator } from "react-native";
 import { Text } from "react-native-paper";
 import { LineChart } from "react-native-chart-kit";
+import { API_BASE_URL } from "../../config/ip.js";
 import styles from "../../styles/stats/stats.js";
 
 interface StatsData {
@@ -23,7 +24,7 @@ export default function Stats() {
   const fetchData = async (type: "daily" | "weekly" | "monthly") => {
     try {
       setLoading(true);
-      const res = await fetch(`http://192.168.1.23:5000/api/reports?userId=${userId}&type=${type}`);
+      const res = await fetch(`${API_BASE_URL}/api/reports?userId=${userId}&type=${type}`);
       const json = await res.json();
       setData({
         labels: Array.isArray(json.labels) ? json.labels : [],

@@ -4,6 +4,7 @@ import { ScrollView, View, Image, Dimensions, ActivityIndicator, TouchableOpacit
 import { Text, Card } from "react-native-paper";
 import { useRouter, useFocusEffect } from "expo-router";
 import { PieChart } from "react-native-chart-kit";
+import { API_BASE_URL } from "../../config/ip.js";
 import styles from "../../styles/home/home.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -23,7 +24,7 @@ useFocusEffect(
         const userId = await AsyncStorage.getItem("userId");
         if (!userId) return;
 
-        const res = await fetch(`http://192.168.1.23:5000/api/summary/totals?userId=${userId}`);
+        const res = await fetch(`${API_BASE_URL}/api/summary/totals?userId=${userId}`);
         const data = await res.json();
         console.log("Summary Data:", data);
         setSummary(data);

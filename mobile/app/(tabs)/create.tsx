@@ -6,6 +6,7 @@ import { Text, TextInput, Button, RadioButton } from "react-native-paper";
 import RNPickerSelect from "react-native-picker-select";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_BASE_URL } from "../../config/ip.js";
 import styles from "../../styles/create/create.js";
 
 // Frontend.
@@ -58,7 +59,7 @@ export default function CreateTransaction() {
 
     setLoading(true);
     try {
-      await fetch(`http://192.168.1.23:5000/api/${endpoint}`, {
+      await fetch(`${API_BASE_URL}/api/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

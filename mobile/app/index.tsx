@@ -4,6 +4,7 @@ import { Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, P
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_BASE_URL } from "../config/ip.js";
 import styles from "../styles/index/index.js";
 
 
@@ -23,7 +24,7 @@ export default function Index() {
       setLoading(true);
       setError("");
 
-      const res = await fetch("http://192.168.1.23:5000/api/users/login", {
+      const res = await fetch(`${API_BASE_URL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

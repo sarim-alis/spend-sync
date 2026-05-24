@@ -6,6 +6,7 @@ import { View, FlatList, Image, TouchableOpacity, ActivityIndicator } from "reac
 import { Text, Card } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { API_BASE_URL } from "../../config/ip.js";
 import styles from "../../styles/transactions/transactions.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -28,7 +29,7 @@ export default function Transactions() {
       const userId = await AsyncStorage.getItem("userId");
       if (!userId) return;
 
-      const res = await fetch(`http://192.168.1.23:5000/api/incomes?userId=${userId}`);
+      const res = await fetch(`${API_BASE_URL}/api/incomes?userId=${userId}`);
       const data = await res.json();
 
       const mapped = data.map((item: any) => ({ id: item.id.toString(), title: item.source, amount: item.amount, icon: require("../../assets/images/salary.png"), createdAt: new Date(item.createdAt)}));
@@ -45,7 +46,7 @@ export default function Transactions() {
       const userId = await AsyncStorage.getItem("userId");
       if (!userId) return;
 
-      const res = await fetch(`http://192.168.1.23:5000/api/expenses?userId=${userId}`);
+      const res = await fetch(`${API_BASE_URL}/api/expenses?userId=${userId}`);
       const data = await res.json();
 
       const mapped = data.map((item: any) => ({ id: item.id.toString(), title: item.category, amount: item.amount, icon: require("../../assets/images/pizza.png"), createdAt: new Date(item.createdAt)}));
@@ -62,7 +63,7 @@ export default function Transactions() {
       const userId = await AsyncStorage.getItem("userId");
       if (!userId) return;
 
-      const res = await fetch(`http://192.168.1.23:5000/api/savings?userId=${userId}`);
+      const res = await fetch(`${API_BASE_URL}/api/savings?userId=${userId}`);
       const data = await res.json();
 
       const mapped = data.map((item: any) => ({ id: item.id.toString(), title: item.goal, amount: item.amount, icon: require("../../assets/images/coins.png"), createdAt: new Date(item.createdAt)}));
