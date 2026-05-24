@@ -1,4 +1,3 @@
-// app/index.tsx
 // Imports.
 import { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator } from "react-native";
@@ -36,14 +35,14 @@ export default function Index() {
         throw new Error(data.message || "Login failed");
       }
 
-      // Save user data in AsyncStorage
+      // Save user data in AsyncStorage.
       await AsyncStorage.multiSet([
         ["token", data.token],
         ["userId", String(data.userId)],
         ["name", data.name],
       ]);
 
-      // Redirect to home tabs
+      // Redirect to home tabs.
       router.replace("/(tabs)/home");
     } catch (err: any) {
       console.error("Login Error:", err.message);
@@ -54,50 +53,26 @@ export default function Index() {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-    {/* Container. */}
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+    {/* Container */}
     <View style={styles.container}>
-      {/* Card. */}
+      {/* Card */}
       <View style={styles.card}>
-        {/* Image. */}
-        <Image
-          style={styles.logo}
-          source={require("../assets/images/logo.png")}
-          resizeMode="contain"
-        />
+        {/* Image */}
+        <Image style={styles.logo} source={require("../assets/images/logo.png")} resizeMode="contain" />
         <Text style={styles.slogan}>Spend Sync</Text>
 
         {/* Email. */}
         <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.dive}
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
+        <TextInput style={styles.dive} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
 
         {/* Password. */}
         <Text style={styles.label}>Password</Text>
         <View style={styles.inputWrapper}>
-        <TextInput
-          style={styles.dive}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-        />
+        <TextInput style={styles.dive} value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
 
-        <TouchableOpacity
-          onPress={() => setShowPassword(!showPassword)}
-          style={styles.eyeIcon}
-        >
-          <Ionicons
-            name={showPassword ? "eye-outline" : "eye-off-outline"}
-            size={20}
-          />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
+          <Ionicons name={showPassword ? "eye-outline" : "eye-off-outline"} size={20} />
         </TouchableOpacity>
       </View>
 
