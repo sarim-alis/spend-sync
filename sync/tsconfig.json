@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/styles/home/home.js", "src/styles/login/login.js", "src/styles/register/register.js", "src/config/api.js", "src/lib/storage.ts"  ],
   "exclude": ["node_modules"]
 }

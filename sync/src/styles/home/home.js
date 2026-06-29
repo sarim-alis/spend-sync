@@ -1,0 +1,15 @@
+export const homeStyles = {
+  container: "bg-[#f5f9fc] min-h-screen pb-20",
+  chartContainer: "mt-5 flex items-center justify-center flex-col",
+  chartTitle: "text-lg font-bold mb-3",
+  card: "bg-gradient-to-r from-green-400 to-green-600 mx-5 my-3 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow",
+  cards: "bg-gradient-to-r from-red-400 to-red-600 mx-5 my-3 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow",
+  cardss: "bg-gradient-to-r from-yellow-400 to-yellow-600 mx-5 my-3 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow",
+  cardContent: "flex flex-row justify-between items-center p-5",
+  leftContent: "flex flex-col",
+  cardTitle: "text-white text-lg font-semibold mb-2",
+  amount: "text-white text-2xl font-bold",
+  rightContent: "flex items-center justify-center",
+  cardImage: "w-16 h-16 object-contain",
+  cardImages: "w-20 h-20 object-contain",
+};
