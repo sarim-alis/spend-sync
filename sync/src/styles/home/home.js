@@ -1,4 +1,4 @@
-export const homeStyles = {
+export default {
   container: "bg-[#f5f9fc] min-h-screen pb-20",
   chartContainer: "mt-5 flex items-center justify-center flex-col",
   chartTitle: "text-lg font-bold mb-3",
