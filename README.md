@@ -6,12 +6,53 @@ Spend Sync is a modern expense tracker web app built with **Next.js** that helps
 
 ## ✨ Features
 
-- ➕ Add income, expenses, and savings
-- 📊 Track overall balance in real-time
-- 📅 Monthly financial overview
-- 🧾 Category-wise expense tracking
-- 🔍 Simple and clean UI
-- ⚡ Fast performance with Next.js
+## 🍭 Summary
+- OCR receipt scanning
+- Monthly analytics
+- Budget alerts
+- Shared wallets
+- Recurring expenses
+- Charts
+- Export CSV/PDF
+
+---
+
+## 🧩 Phase 1 – MVP
+
+- User authentication (JWT)
+- Add / Edit / Delete transactions
+- Categories (Food, Transport, Bills, etc.)
+- Income vs Expense tracking
+- Monthly summary dashboard
+- Charts for visualization
+- Search & filtering transactions
+
+---
+
+## ⚙️ Phase 2 – Production Features
+
+- Recurring transactions automation
+- Budget goals & limits
+- Savings goals tracking
+- Receipt image upload (AWS S3)
+- Export reports (PDF / CSV)
+- Multi-currency support
+- Dark mode UI
+- Push notifications for bill reminders
+
+---
+
+## 🧠 Phase 3 – Advanced Features
+
+- Shared wallets (family & friends)
+- OCR receipt scanning
+- AI-powered spending insights  
+  - “You spent 30% more on food this month.”
+- Monthly expense prediction
+- Offline support with sync
+- Real-time updates across devices
+
+---
 
 ---
 
