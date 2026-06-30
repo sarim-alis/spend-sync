@@ -1,6 +1,6 @@
 # 💸 Spend Sync
 
-Spend Sync is a modern expense tracker web app built with **Next.js** that helps you manage your finances easily. Track your income, expenses, and savings in one clean dashboard.
+Spend Sync is a modern expense tracker app that helps you manage your finances easily. Track your income, expenses, and savings in one clean dashboard.
 
 ---
 
