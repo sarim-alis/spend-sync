@@ -77,6 +77,6 @@ Spend Sync helps users:
 
 ## 👨‍💻 Author
 
-Built with ❤️ using Next.js
+Built with ❤️ using React Native
 
 <img width="400" height="518" alt="image" src="https://github.com/user-attachments/assets/d0108b7b-abd3-4e9c-b995-fc14b3a6f8dd" />
