@@ -1,5 +1,7 @@
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+
 const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
 
 export const signup = async (request, reply) => {
@@ -9,8 +11,9 @@ export const signup = async (request, reply) => {
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) return reply.status(400).send({ message: "User already exists" });
 
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
-      data: { name, email, password },
+      data: { name, email, password: hashedPassword },
     });
 
     return reply.status(201).send({ message: "User created", user });
@@ -27,7 +30,8 @@ export const login = async (request, reply) => {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) return reply.status(400).send({ message: "Invalid credentials" });
 
-    if (user.password !== password) {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
       return reply.status(400).send({ message: "Invalid credentials" });
     }
 
