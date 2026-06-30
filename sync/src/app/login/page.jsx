@@ -55,11 +55,15 @@ export default function Login() {
         {error && <p className={styles.errorText}>{error}</p>}
 
         <button className={styles.button} onClick={handleLogin} disabled={loginMutation.isPending}>
-          {loginMutation.isPending ? (
-            <Loader size={30} />
-          ) : (
-            <span className={styles.buttonText}>LOGIN</span>
-          )}
+          <span className={styles.buttonText}>
+            {loginMutation.isPending ? (
+              <div className="flex items-center justify-center">
+                <Loader size={20} />
+              </div>
+            ) : (
+              "LOGIN"
+            )}
+          </span>
         </button>
 
         <p className={styles.switchText} onClick={() => router.push("/register")}>
