@@ -77,4 +77,4 @@ Spend Sync helps users:
 
 ## 👨‍💻 Author
 
-Built with ❤️ using Next.js
+Built with ❤️ using React Native
