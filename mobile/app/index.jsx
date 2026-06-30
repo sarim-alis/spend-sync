@@ -45,7 +45,7 @@ export default function Index() {
 
       // Redirect to home tabs.
       router.replace("/(tabs)/home");
-    } catch (err: any) {
+    } catch (err) {
       console.error("Login Error:", err.message);
       setError(err.message || "Something went wrong");
     } finally {

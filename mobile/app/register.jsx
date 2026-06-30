@@ -64,7 +64,7 @@ export default function Register() {
         // If auto-login fails, redirect to login page.
         router.replace("/");
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error("Register Error:", err.message);
       setError(err.message || "Something went wrong");
     } finally {
