@@ -56,38 +56,12 @@ Spend Sync is a modern expense tracker web app built with **Next.js** that helps
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Install dependencies
-```bash
-npm install
-```
-
-### 2. Run development server
-```bash
-npm run dev
-```
-
-### 3. Open in browser
-http://localhost:3000
-
----
-
-## 🛠 Tech Stack
-
-- Next.js
-- TypeScript
-- Tailwind CSS
-- PostgreSQL (Neon / any provider)
-- Prisma / Drizzle (optional)
-
----
 
 ## 📌 Future Improvements
 
 - Charts & analytics dashboard
 - Budget limits & alerts
-- Authentication system (NextAuth / Clerk)
+- Authentication system
 - Mobile app version
 
 ---
