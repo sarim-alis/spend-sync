@@ -97,9 +97,9 @@ export default function Transactions() {
 
 // Merge all transactions and add type
 const allData = [
-  ...incomeSources.map(i => ({ ...i, type: "income", createdAt: new Date(i.createdAt) })),
-  ...expenseSources.map(e => ({ ...e, type: "expense", createdAt: new Date(e.createdAt) })),
-  ...savingSources.map(s => ({ ...s, type: "saving", createdAt: new Date(s.createdAt) }))
+  ...incomeSources.map(i => ({ ...i, id: `income-${i.id}`, type: "income", createdAt: new Date(i.createdAt) })),
+  ...expenseSources.map(e => ({ ...e, id: `expense-${e.id}`, type: "expense", createdAt: new Date(e.createdAt) })),
+  ...savingSources.map(s => ({ ...s, id: `saving-${s.id}`, type: "saving", createdAt: new Date(s.createdAt) }))
 ];
 
 // Filter and sort based on selected type
