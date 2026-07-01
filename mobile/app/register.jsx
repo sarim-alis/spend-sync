@@ -7,8 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_BASE_URL } from "../config/ip.js";
 import styles from "../styles/register/register.js";
 
-
-// Frontend.
 export default function Register() {
   // States.
   const router = useRouter();
@@ -58,10 +56,9 @@ export default function Register() {
           ["name", loginData.name],
         ]);
 
-        // Redirect to home tabs.
+        // Redirect to home tab.
         router.replace("/(tabs)/home");
       } else {
-        // If auto-login fails, redirect to login page.
         router.replace("/");
       }
     } catch (err) {
@@ -80,18 +77,18 @@ export default function Register() {
       <View style={styles.card}>
         {/* Image */}
         <Image style={styles.logo} source={require("../assets/images/logo.png")} resizeMode="contain" />
-        <Text style={styles.slogan}>Spend Sync</Text>
+        <Text style={styles.slogan}>Spend <Text>Sync</Text></Text>
 
-        {/* Name. */}
-        <Text style={styles.label}>Name</Text>
+        {/* Name */}
+        <Text style={styles.label}>Name:</Text>
         <TextInput style={styles.dive} value={name} onChangeText={setName} autoCapitalize="words" />
 
-        {/* Email. */}
-        <Text style={styles.label}>Email</Text>
+        {/* Email */}
+        <Text style={styles.label}>Email:</Text>
         <TextInput style={styles.dive} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
 
-        {/* Password. */}
-        <Text style={styles.label}>Password</Text>
+        {/* Password */}
+        <Text style={styles.label}>Password:</Text>
         <View style={styles.inputWrapper}>
         <TextInput style={styles.dive} value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
 
@@ -99,11 +96,9 @@ export default function Register() {
           <Ionicons name={showPassword ? "eye-outline" : "eye-off-outline"} size={20} />
         </TouchableOpacity>
       </View>
-
-        {/* Error Message */}
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-        {/* Button. */}
+        {/* Button */}
         <TouchableOpacity style={styles.button} onPress={handleRegister} disabled={loading}>
           {loading ? (
             <ActivityIndicator color="#fff" />
@@ -114,7 +109,7 @@ export default function Register() {
 
         {/* Switch to Login */}
         <TouchableOpacity onPress={() => router.replace("/")}>
-          <Text style={styles.switchText}>Already have an account? Login</Text>
+          <Text style={styles.switchText}>Already have an account? <Text style={styles.switchTexts}>Login</Text></Text>
         </TouchableOpacity>
 
       </View>

@@ -3,12 +3,10 @@ import { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_BASE_URL } from "../config/ip.js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../styles/index/index.js";
 
-
-// Frontend.
 export default function Index() {
   // States.
   const router = useRouter();
@@ -31,7 +29,6 @@ export default function Index() {
       });
 
       const data = await res.json();
-
       if (!res.ok) {
         throw new Error(data.message || "Login failed");
       }
@@ -43,7 +40,7 @@ export default function Index() {
         ["name", data.name],
       ]);
 
-      // Redirect to home tabs.
+      // Redirect to home tab.
       router.replace("/(tabs)/home");
     } catch (err) {
       console.error("Login Error:", err.message);
@@ -63,12 +60,12 @@ export default function Index() {
         <Image style={styles.logo} source={require("../assets/images/logo.png")} resizeMode="contain" />
         <Text style={styles.slogan}>Spend Sync</Text>
 
-        {/* Email. */}
-        <Text style={styles.label}>Email</Text>
+        {/* Email */}
+        <Text style={styles.label}>Email:</Text>
         <TextInput style={styles.dive} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
 
-        {/* Password. */}
-        <Text style={styles.label}>Password</Text>
+        {/* Password */}
+        <Text style={styles.label}>Password:</Text>
         <View style={styles.inputWrapper}>
         <TextInput style={styles.dive} value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
 
@@ -76,11 +73,9 @@ export default function Index() {
           <Ionicons name={showPassword ? "eye-outline" : "eye-off-outline"} size={20} />
         </TouchableOpacity>
       </View>
-      
-        {/* Error */}
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-        {/* Button. */}
+        {/* Button */}
         <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
           {loading ? (
             <ActivityIndicator color="#fff" />
@@ -91,7 +86,7 @@ export default function Index() {
 
         {/* Register */}
         <TouchableOpacity onPress={() => router.push("/register")}>
-          <Text style={styles.switchText}>Don't have an account? Register</Text>
+          <Text style={styles.switchText}>Don't have an account?<Text style={styles.switchTexts}> Register</Text></Text>
         </TouchableOpacity>
 
       </View>
