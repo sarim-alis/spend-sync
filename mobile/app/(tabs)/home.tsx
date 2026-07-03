@@ -74,7 +74,7 @@ useFocusEffect(
       
       {/* Pie Chart */}
       <View style={{ marginTop: 20, alignItems: "center" }}>
-        <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>Income Distribution</Text>
+        <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>Money Distribution</Text>
         <PieChart data={data} width={screenWidth - 40} height={220} chartConfig={{ backgroundColor: "#fff", backgroundGradientFrom: "#fff", backgroundGradientTo: "#fff", color: (opacity = 1) => `rgba(0,0,0, ${opacity})`}} accessor={"population"} backgroundColor={"transparent"} paddingLeft={"15"} center={[0, 0]} />
       </View>
 

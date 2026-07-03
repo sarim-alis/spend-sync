@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-        <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Income Distribution</h2>
+        <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Money Distribution</h2>
         <ResponsiveContainer width="90%" height={300}>
           <PieChart>
             <Pie
